@@ -1,0 +1,18 @@
+SUPABASE_URL=https://xxxxxxxxxxxx.supabase.co
+SUPABASE_SERVICE_KEY=eyJ...
+SUPABASE_JWT_SECRET=your-jwt-secret-from-supabase-dashboard
+# 32-byte hex key – generate with: openssl rand -hex 32
+ENCRYPTION_KEY=0000000000000000000000000000000000000000000000000000000000000000
+# URL base do frontend (para links de descadastro e rastreamento)
+APP_URL=http://localhost:5173
+# Segredo para disparar a fila sem JWT (curl / cron)
+CRON_SECRET=alvo-cron-local
+# Modo de envio Maileroo: formdata | urlencoded | json
+MAILEROO_BODY_MODE=formdata
+# IA para geração de relatórios: openai | claude | gemini | disabled
+AI_PROVIDER=disabled
+OPENAI_API_KEY=
+ANTHROPIC_API_KEY=
+GEMINI_API_KEY=
+# Override do modelo padrão (deixe vazio para usar o default de cada provider)
+AI_MODEL=

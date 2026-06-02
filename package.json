@@ -1,0 +1,15 @@
+{
+  "name": "alvowebmkt",
+  "private": true,
+  "workspaces": ["apps/*"],
+  "scripts": {
+    "dev": "concurrently -n worker,web -c cyan,magenta \"npm run dev -w apps/worker\" \"npm run dev -w apps/web\"",
+    "dev:web": "npm run dev -w apps/web",
+    "dev:worker": "npm run dev -w apps/worker",
+    "build": "npm run build -w apps/web && npm run build -w apps/worker",
+    "typecheck": "npm run typecheck -w apps/web && npm run typecheck -w apps/worker"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}

@@ -1,0 +1,193 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── Design tokens (CSS custom properties) ─────────────────────────────────
+   All values are space-separated RGB triplets to support Tailwind's
+   <alpha-value> opacity modifier system (e.g. bg-primary/10).
+   ─────────────────────────────────────────────────────────────────────────── */
+
+:root {
+  /* Page surfaces */
+  --canvas:        247 241 232;   /* #F7F1E8 warm off-white */
+  --surface-soft:  239 232 218;   /* #EFE8DA lifted surface */
+  --surface-card:  255 253 248;   /* #FFFDF8 card background */
+
+  /* Text */
+  --ink:           23 23 23;      /* #171717 */
+  --body:          46 41 38;      /* #2E2926 */
+  --body-strong:   23 23 23;      /* #171717 */
+  --muted:         107 98 88;     /* #6B6258 */
+  --muted-soft:    158 149 140;   /* #9E958C */
+
+  /* Borders */
+  --hairline:      230 216 200;   /* #E6D8C8 */
+
+  /* Brand */
+  --primary:          232 93 79;   /* #E85D4F coral red */
+  --primary-active:   185 62 52;   /* #B93E34 */
+  --primary-disabled: 230 216 200; /* #E6D8C8 */
+
+  /* Semantic */
+  --success: 47 125 92;    /* #2F7D5C */
+  --warning: 201 130 43;   /* #C9822B */
+  --error:   180 35 24;    /* #B42318 */
+
+  /* Sidebar (always dark, depth changes per mode) */
+  --sidebar-bg:    26 28 31;    /* #1A1C1F */
+  --sidebar-hover: 37 41 48;   /* #252930 */
+
+  /* On-dark text */
+  --on-dark:      247 241 232;  /* #F7F1E8 */
+  --on-dark-soft: 167 160 150;  /* #A7A096 */
+}
+
+html.dark {
+  /* Page surfaces */
+  --canvas:        14 17 22;    /* #0E1116 near-black */
+  --surface-soft:  19 24 31;    /* #13181F */
+  --surface-card:  23 27 34;    /* #171B22 */
+
+  /* Text */
+  --ink:           247 241 232; /* #F7F1E8 */
+  --body:          221 215 206; /* #DDD7CE */
+  --body-strong:   247 241 232; /* #F7F1E8 */
+  --muted:         167 160 150; /* #A7A096 */
+  --muted-soft:    122 114 104; /* #7A7268 */
+
+  /* Borders */
+  --hairline:      42 48 56;    /* #2A3038 */
+
+  /* Brand */
+  --primary:          255 107 92;  /* #FF6B5C */
+  --primary-active:   232 93 79;   /* #E85D4F */
+  --primary-disabled: 42 48 56;    /* #2A3038 */
+
+  /* Semantic */
+  --success: 79 178 134;   /* #4FB286 */
+  --warning: 217 154 61;   /* #D99A3D */
+  --error:   255 107 107;  /* #FF6B6B */
+
+  /* Sidebar (even darker than page bg) */
+  --sidebar-bg:    10 13 17;    /* #0A0D11 */
+  --sidebar-hover: 19 24 31;   /* #13181F */
+
+  /* On-dark text */
+  --on-dark:      247 241 232;  /* #F7F1E8 */
+  --on-dark-soft: 167 160 150;  /* #A7A096 */
+}
+
+/* ─── Base styles ────────────────────────────────────────────────────────── */
+
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    font-family: 'Inter', system-ui, sans-serif;
+    /* Smooth theme transition — only on color properties, not layout */
+    transition: background-color 150ms ease, color 150ms ease;
+  }
+
+  body {
+    background-color: rgb(var(--canvas));
+    color: rgb(var(--body));
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Improve text rendering for headings */
+  h1, h2, h3, h4, h5, h6 {
+    text-wrap: balance;
+    color: rgb(var(--ink));
+    font-weight: 600;
+    line-height: 1.25;
+  }
+
+  p, li {
+    text-wrap: pretty;
+  }
+
+  /* Focus rings using brand color */
+  :focus-visible {
+    outline: 2px solid rgb(var(--primary));
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  /* Scrollbar styling (Webkit) */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgb(var(--hairline));
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgb(var(--muted-soft));
+  }
+
+  /* Remove default form element styling */
+  input[type="search"]::-webkit-search-decoration,
+  input[type="search"]::-webkit-search-cancel-button {
+    -webkit-appearance: none;
+  }
+
+  /* Dark mode: reduce shadow intensity */
+  html.dark .shadow-card {
+    box-shadow: 0 1px 3px rgb(0 0 0 / 0.24), 0 1px 2px rgb(0 0 0 / 0.16);
+  }
+  html.dark .shadow-modal {
+    box-shadow: 0 8px 32px rgb(0 0 0 / 0.5);
+  }
+}
+
+/* ─── Utility overrides ──────────────────────────────────────────────────── */
+
+@layer utilities {
+  /* Monospace numbers in tables */
+  .tabular {
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Prevent text selection on interactive labels */
+  .no-select {
+    user-select: none;
+  }
+}
+
+/* ─── Print styles ───────────────────────────────────────────────────────── */
+
+@media print {
+  :root {
+    /* Force light values for print */
+    --canvas:      255 255 255;
+    --surface-card: 248 248 248;
+    --ink:          0 0 0;
+    --body:         30 30 30;
+    --muted:        80 80 80;
+    --hairline:     220 220 220;
+    --primary:      200 70 60;
+  }
+}
+
+/* ─── Reduced motion ─────────────────────────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    transition: none;
+  }
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

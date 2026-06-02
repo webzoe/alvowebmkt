@@ -1,0 +1,12 @@
+name = "alvowebmkt-worker"
+main = "src/index.ts"
+compatibility_date = "2024-10-22"
+compatibility_flags = ["nodejs_compat"]
+
+[dev]
+port = 8787
+
+# Cloudflare Cron Trigger – executa scheduler a cada 5 minutos em produção
+# Descomente para habilitar:
+# [triggers]
+# crons = ["*/5 * * * *"]

@@ -1,0 +1,21 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install *)",
+      "Bash(npx tsc *)",
+      "Bash(npm run *)",
+      "Bash(npm --version)",
+      "Bash(curl.exe -s -X POST http://localhost:8787/internal/queue/process -H \"X-Cron-Secret: alvo-cron-local\")",
+      "Bash(node .agents/skills/impeccable/scripts/context.mjs)",
+      "Bash(npx wrangler *)",
+      "Bash(sed -i 's/ArrowLeft, Users, Eye,/ArrowLeft, Eye,/' pages/campaigns/CampaignDetailPage.tsx)",
+      "Bash(sed -i 's/import { Input } from/\\\\/\\\\/ removed: import { Input } from/' pages/campaigns/CampaignEventsPage.tsx)",
+      "Bash(sed -i '/\\\\/\\\\/ removed: import { Input }/d' pages/campaigns/CampaignEventsPage.tsx)",
+      "Bash(git add *)",
+      "Bash(git init *)",
+      "Bash(git remote *)",
+      "Bash(git fetch *)",
+      "Bash(git branch *)"
+    ]
+  }
+}
